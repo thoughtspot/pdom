@@ -21,7 +21,7 @@
             "headers": [
                 {
                     "key": "Content-Security-Policy",
-                    "value": "default-src 'self'; script-src * 'unsafe-eval'; style-src * 'unsafe-inline' data:; font-src *; worker-src * data: blob:; frame-ancestors *; form-action 'self'"
+                    "value": "default-src 'self'; script-src * 'unsafe-eval' 'unsafe-inline'; style-src * 'unsafe-inline' data:; font-src *; worker-src * data: blob:; frame-ancestors *; form-action 'self'"
                 }
             ]
         }
