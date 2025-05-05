@@ -26,6 +26,7 @@
     "build-demo": "vite build -c vite.demo.config.ts",
     "build-lib": "vite build -c vite.lib.config.ts",
     "build": "tsc && vite build",
+    "vercel:deploy:prod": "npm run build && vercel pull && vercel build --prod && vercel deploy --prebuilt --prod",
     "prepublishOnly": "tsc && npm run build-lib"
   },
   "keywords": [],

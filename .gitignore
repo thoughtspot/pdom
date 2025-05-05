@@ -131,3 +131,4 @@ dist
 
 esm
 cjs
+.vercel
