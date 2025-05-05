@@ -48,7 +48,7 @@
     "highcharts": "^11.4.3",
     "matter-js": "^0.20.0",
     "matter-wrap": "^0.2.0",
-    "promise-postmessage": "^3.4.0",
+    "promise-postmessage": "^3.6.0-rc.1",
     "spin.js": "^4.1.1",
     "stats.js": "^0.17.0",
     "tailwindcss": "^3.4.4",

@@ -1,4 +1,4 @@
-import { onMessage, sendMessage } from 'promise-postmessage';
+import { onMessage, sendMessage, ON_MESSAGE_CALLBACK_SKIP_PROCESSING } from 'promise-postmessage';
 import { inject } from "@vercel/analytics"
 inject();
 
@@ -46,6 +46,8 @@ const FrameworkRunners = {
         onMessage((message) => {
             if (message._type === 'pdom-props') {
                 root.render(React.createElement(App, getProps(message.props)));
+            } else {
+                return ON_MESSAGE_CALLBACK_SKIP_PROCESSING;
             }
         }, window.parent, 'child')
     },

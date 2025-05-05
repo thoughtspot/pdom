@@ -1,4 +1,4 @@
-import { onMessage, sendMessage } from 'promise-postmessage';
+import { ON_MESSAGE_CALLBACK_SKIP_PROCESSING, onMessage, sendMessage } from 'promise-postmessage';
 import { getScriptUrlFromFunction } from './util';
 
 export interface PDomOptions {
@@ -145,6 +145,8 @@ export default class PDom {
         if (data._type && this.callbacks[data._type]) {
             // call each callback return the first resolved promise.
             return Promise.race(this.callbacks[data._type].map(async cb => await cb(data)));
+        } else {
+            return ON_MESSAGE_CALLBACK_SKIP_PROCESSING;
         }
     }
 
@@ -178,3 +180,5 @@ function getOuterHTMLAndStyleString(el: HTMLElement) {
     }
     return { nodeOuterHTML, cssText };
 }
+
+export { ON_MESSAGE_CALLBACK_SKIP_PROCESSING }; 

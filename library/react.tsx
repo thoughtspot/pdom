@@ -1,5 +1,5 @@
 import React from 'react';
-import PDomClass from '.';
+import PDomClass, { ON_MESSAGE_CALLBACK_SKIP_PROCESSING } from '.';
 
 class PDomReact extends PDomClass {
     protected framework = 'react';
@@ -33,6 +33,8 @@ function PDom<T extends React.ComponentType<any>>(importFn: () => Promise<{ defa
                 if (message._type === 'pdom-callback') {
                     const { callbackId, args } = message;
                     return props[callbackId](...args);
+                } else {
+                    return ON_MESSAGE_CALLBACK_SKIP_PROCESSING;
                 }
             });
         }, []);
