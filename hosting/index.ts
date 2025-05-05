@@ -2,6 +2,8 @@ import { onMessage, sendMessage, ON_MESSAGE_CALLBACK_SKIP_PROCESSING } from 'pro
 import { inject } from "@vercel/analytics"
 inject();
 
+console.log(`It's using: "promise-postmessage": "^3.6.0-rc.1"`);
+
 
 const defaultRunner = async (scriptUrls) => {
     for (const scriptUrl of scriptUrls) {
