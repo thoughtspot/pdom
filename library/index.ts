@@ -25,6 +25,7 @@ function generateIframeSrc(origin?: string, disableOriginAgentCluster?: boolean)
 
 export default class PDom {
     #iframeEl: HTMLIFrameElement;
+    #unsubscribeFromIframeMessages: (() => void) | undefined;
     private callbacks: Record<string, Function[]> = {};
     private options: PDomOptions & { scriptUrls?: string[] };
     private el: HTMLElement;
@@ -136,7 +137,7 @@ export default class PDom {
     }
 
     private subscribeToIframeMessages() {
-        onMessage((data) => {
+        this.#unsubscribeFromIframeMessages = onMessage((data) => {
             return this.executeCallbacks(data);
         }, this.#iframeEl);
     }
@@ -167,6 +168,12 @@ export default class PDom {
 
     public onMessage(cb: (data) => any) {
         return onMessage(cb, this.#iframeEl, 'parent');
+    }
+
+    public destroy() {
+        this.#unsubscribeFromIframeMessages?.();
+        this.#unsubscribeFromIframeMessages = undefined;
+        this.callbacks = {};
     }
 }
 
